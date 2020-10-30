@@ -2,21 +2,21 @@ import axios from "axios";
 
 export function postsHasErrored(bool) {
   return {
-    type: "POSTS_HAS_ERRORED",
+    type: "POSTS_ERROR",
     hasErrored: bool,
   };
 }
 
 export function postsIsLoading(bool) {
   return {
-    type: "POSTS_IS_LOADING",
+    type: "POSTS_START",
     isLoading: bool,
   };
 }
 
 export function postsFetchDataSuccess(posts) {
   return {
-    type: "POSTS_FETCH_DATA_SUCCESS",
+    type: "POSTS_SUCCESS",
     posts,
   };
 }

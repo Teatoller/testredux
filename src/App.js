@@ -5,9 +5,9 @@ import PostList from './components/PostList';
 function App() {
   return (
     <div>
-      <ItemList/>
-      <hr/>
       <PostList/>
+      <hr/>
+      <ItemList/>
     </div>
   );
 }
