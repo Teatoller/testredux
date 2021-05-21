@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'; //1
-import { itemsFetchData } from '../actions/items'; //2
+import { itemsFetchData } from '../redux/actions/items'
 
 class ItemList extends Component {
     // constructor() {
@@ -62,13 +62,16 @@ class ItemList extends Component {
             return <p>Loading…</p>;
         } //12
         return (
-            <ul>
-                {this.props.items.map((item) => (
-                    <li key={item.id}>
-                        {item.label}
-                    </li>
-                ))}
-            </ul>
+            <>
+                <h3>Item List</h3>
+                <ul>
+                    {this.props.items.map((item) => (
+                        <li key={item.id}>
+                            {item.label}
+                        </li>
+                    ))}
+                </ul>
+            </>
         );
     }
 }
