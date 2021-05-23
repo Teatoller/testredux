@@ -82,13 +82,7 @@ const mapStateToProps = (state) => {
     };
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         createPost: () => dispatch(createPost())
-//     };
-// };
 PostForm.propTypes = {
     createPost: PropTypes.func.isRequired,
-    // posts: PropTypes.array.isRequired,
 };
-export default connect(mapStateToProps, {createPost})(PostForm);
+export default connect(mapStateToProps, { createPost })(PostForm);
