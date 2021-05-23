@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import axios from "axios";
+// import axios from "axios";
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createPost } from "../redux/actions/bulletActions"
 
 export class PostForm extends Component {
     constructor() {
@@ -22,19 +25,22 @@ export class PostForm extends Component {
             body: this.state.body
         };
 
-        const headers = {
-            'Content-Type': 'application/json',
-            "Access-Control-Allow-Origin": "*",
-        }
-        axios.post('https://jsonplaceholder.typicode.com/posts',
-            post, {
-            headers: headers
-        }
-        )
-            .then((response) => console.log("...", response.data))
-            .catch(function (error) {
-                console.log(error);
-            });
+        // Call action here
+        this.props.createPost(post);
+
+        // const headers = {
+        //     'Content-Type': 'application/json',
+        //     "Access-Control-Allow-Origin": "*",
+        // }
+        // axios.post('https://jsonplaceholder.typicode.com/posts',
+        //     post, {
+        //     headers: headers
+        // }
+        // )
+        //     .then((response) => console.log("...", response.data))
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     });
     }
 
     render() {
@@ -69,4 +75,20 @@ export class PostForm extends Component {
         )
     }
 }
-export default PostForm
+// export default PostForm
+const mapStateToProps = (state) => {
+    return {
+        post: state.bullets.post,
+    };
+};
+
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         createPost: () => dispatch(createPost())
+//     };
+// };
+PostForm.propTypes = {
+    createPost: PropTypes.func.isRequired,
+    // posts: PropTypes.array.isRequired,
+};
+export default connect(mapStateToProps, {createPost})(PostForm);

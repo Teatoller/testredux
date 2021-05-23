@@ -9,6 +9,13 @@ export class Post extends Component {
     componentDidMount() {
         this.props.bulletpostsFetchData();
     }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.newPost) {
+            this.props.posts.unshift(nextProps.newPost);
+        }
+    }
+
     render() {
         const postItems = this.props.posts.map(post => (
             <div key={post.id}>
@@ -29,6 +36,7 @@ export class Post extends Component {
 const mapStateToProps = (state) => {
     return {
         posts: state.bullets.posts,
+        newPost: state.bullets.post,
     };
 };
 
@@ -40,5 +48,6 @@ const mapDispatchToProps = (dispatch) => {
 Post.propTypes = {
     bulletpostsFetchData: PropTypes.func.isRequired,
     posts: PropTypes.array.isRequired,
+    newPost: PropTypes.object
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Post);

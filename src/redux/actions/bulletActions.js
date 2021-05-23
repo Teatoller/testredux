@@ -48,3 +48,25 @@ export const bulletpostsFetchData = () => {
 //             }))
 //     };
 // }
+
+export const createPost = (postData) => {
+    const headers = {
+        'Content-Type': 'application/json',
+        "Access-Control-Allow-Origin": "*",
+    }
+    return (dispatch) => {
+        axios.post('https://jsonplaceholder.typicode.com/posts',
+            postData, {
+            headers: headers
+        },
+        )
+            .then((response) => response.data)
+            .then((post) => dispatch({
+                type: NEW_POST,
+                payload: post
+            }))
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
+}
