@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Redux Crash course with React-source](https://www.youtube.com/watch?v=93p3LxR9xfM&t=1786s)
 
 ## Available Scripts
 

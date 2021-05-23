@@ -12,6 +12,12 @@ export function bullets(state = initialState, action) {
                 ...state,
                 posts: action.payload
             }
+        case NEW_POST:
+            return {
+                ...state,
+                post: action.payload
+
+            }
         default:
             return state;
     }
