@@ -1,55 +1,64 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { fetchUsersData } from "../redux/actions/userAction"
 import UserForm from "./UserForm";
 
-class User extends Component {
+const User = () => {
+  const users = useSelector(state => state.users.users);
+  const newUser = useSelector(state => state.users.user);
+  const dispatch = useDispatch();
+  dispatch(fetchUsersData())
 
-  componentDidMount() {
-    this.props.fetchUsersData();
-  }
+  console.log("......new!!", newUser);
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.newUser) {
-      this.props.users.unshift(nextProps.newUser);
+  useEffect(() => {
+    fetchUsersData();
+
+  }, []);
+
+  useEffect(() => {
+    if (newUser) {
+      users.unshift(newUser);
     }
-  }
+  }, [])
 
-  render() {
 
-    const userItems = this.props.users.map((user) => (
-      <ul key={user.id}>
-        <li key={user.id}>name: {user.name}</li>
-        <li key={user.id}>username: {user.username}</li>
-        <hr />
-      </ul>
-    ))
-    return (
-      <>
-        <UserForm />
-        <hr />
-        <h3>User List</h3>
-        { userItems}
-      </>
-    );
-  }
+
+  const userItems = users.map((user) => (
+    <ul key={user.id}>
+      <li key={user.id}>name: {user.name}</li>
+      <li key={user.id}>username: {user.username}</li>
+      <hr />
+    </ul>
+  ))
+  return (
+    <>
+      <UserForm />
+      <hr />
+      <h3>User List</h3>
+      { userItems}
+    </>
+  );
+
+
 }
-const mapStateToProps = (state) => {
-  return {
-    users: state.users.users,
-    newUser: state.users.user,
-  };
-};
+// const mapStateToProps = (state) => {
+//   return {
+//     users: state.users.users,
+//     newUser: state.users.user,
+//   };
+// };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchUsersData: () => dispatch(fetchUsersData())
-  };
-};
-User.propTypes = {
-  fetchUsersData: PropTypes.func.isRequired,
-  users: PropTypes.array.isRequired,
-  newUser: PropTypes.object
-};
-export default connect(mapStateToProps, mapDispatchToProps)(User);
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     fetchUsersData: () => dispatch(fetchUsersData())
+//   };
+// };
+// User.propTypes = {
+//   fetchUsersData: PropTypes.func.isRequired,
+//   users: PropTypes.array.isRequired,
+//   newUser: PropTypes.object
+// };
+// export default connect(mapStateToProps, mapDispatchToProps)(User);
+export default User
