@@ -10,7 +10,7 @@ import Home from './components/Home';
 import ItemList from './components/itemList';
 import Post from './components/Post';
 import PostList from './components/PostList';
-import UserList from './components/UserList';
+import User from './components/User';
 
 function App() {
   return (
@@ -34,7 +34,7 @@ function App() {
               <Link className="nav-link" to="/itemlist">Items</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/userList">UserList</Link>
+              <Link className="nav-link" to="/userList">Users</Link>
             </li>
           </ul>
 
@@ -45,7 +45,7 @@ function App() {
               <Post />
             </Route>
             <Route path="/userlist">
-              <UserList />
+              <User />
             </Route>
             <Route path="/postlist">
               <PostList />
