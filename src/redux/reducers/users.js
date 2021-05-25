@@ -13,7 +13,6 @@ export function users(state = initialState, action) {
                 users: action.payload
             }
             case NEW_USER:
-                console.log("kaboom...reducer")
                 return {
                     ...state,
                     user: action.payload
